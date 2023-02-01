@@ -21,6 +21,9 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'phone_number',
+        'address',
+        'role_id',
     ];
 
     /**
@@ -30,15 +33,20 @@ class User extends Authenticatable
      */
     protected $hidden = [
         'password',
-        'remember_token',
     ];
 
-    /**
-     * The attributes that should be cast.
-     *
-     * @var array<string, string>
-     */
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-    ];
+    public function isAdmin(){
+        if($this->role_id == 1){
+            return true;
+        }
+        return false;
+    }
+
+    public function isManager(){
+        if($this->role_id == 2){
+            return true;
+        }
+        return false;
+    }
+
 }

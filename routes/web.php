@@ -20,7 +20,18 @@ Route::get('/', function () {
 });
 
 Route::get('/login', [AuthController::class, 'login'])->name('login');
+Route::post('/login/upload', [AuthController::class, 'upload_login'])->name('login.upload');
 Route::get('/register', [AuthController::class, 'register'])->name('register');
+Route::post('/register/upload', [AuthController::class, 'upload_register'])->name('register.upload');
 Route::get('/reset_password', [AuthController::class, 'reset_password'])->name('reset_password');
+Route::post('/reset_password/upload', [AuthController::class, 'upload_reset_password'])->name('reset_password.upload');
+Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
-Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dasboard');
+Route::group(['prefix' => 'admin','middleware' => ['auth','admin-role']], function () {
+    Route::get('dashboard', [AdminController::class, 'dashboard'])->name('admin.dasboard');
+});
+
+Route::group(['prefix' => 'manager','middleware' => ['auth','manager-role']], function () {
+    Route::get('dashboard', [AdminController::class, 'dashboard'])->name('manager   .dasboard');
+});
+

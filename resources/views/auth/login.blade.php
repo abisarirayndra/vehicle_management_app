@@ -34,16 +34,21 @@
 
             <div class="card-body">
                 <p class="login-box-msg" style="font-size:20px"><b>Login</b></p>
-                @if ($errors->any())
-                    <div class="alert alert-danger">
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
+                @if (session()->has('errors'))
+                    <div class="alert alert-danger alert-dismissible">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                        <h5><i class="icon fas fa-exclamation-triangle"></i> Alert!</h5>
+                        <p>{{ session()->get('errors') }}</p>
                     </div>
                 @endif
-                <form action="" method="post">
+                @if (session()->has('success'))
+                    <div class="alert alert-success alert-dismissible">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                        <h5><i class="icon fas fa-check"></i> Alert!</h5>
+                        <p>{{ session()->get('success') }}</p>
+                    </div>
+                @endif
+                <form action="{{ route('login.upload') }}" method="post">
                     @csrf
                     <div class="input-group mb-3">
                         <input type="email" class="form-control" required name="email" id="email" placeholder="Email">
@@ -71,7 +76,10 @@
                 </form>
 
                 <p class="mb-1">
-                    <a href="">Lupa Password</a>
+                    <a href="{{ route('reset_password') }}">Lupa Password</a>
+                </p>
+                <p class="mb-1">
+                    <a href="{{ route('register') }}">Register Account</a>
                 </p>
                 {{-- <p class="mb-0">
                     <a href="{{route('register')}}" class="text-center">Register Buswangi</a>

@@ -15,16 +15,24 @@ Admin Dashboard
 @endsection
 
 @section('content')
+@if (session()->has('success'))
+        <div class="alert alert-success alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+               <h5><i class="icon fas fa-check"></i> Alert!</h5>
+            <p>{{ session()->get('success') }}</p>
+        </div>
+    @endif
 <div class="card">
     <div class="card-header">
       <h3 class="card-title">DataTable with default features</h3>
     </div>
+
     <!-- /.card-header -->
     <div class="card-body">
         <table id="example2" class="table table-bordered table-hover">
             <thead>
                 <tr>
-                    
+
                 </tr>
             </thead>
             <tbody>

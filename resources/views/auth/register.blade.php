@@ -30,19 +30,29 @@
         <div class="card card-outline card-primary">
             <div class="card-body">
             <p class="login-box-msg" style="font-size:20px"><b>Register</b></p>
-                @if ($errors->any())
-                    <div class="alert alert-danger">
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
+                @if (session()->has('errors'))
+                    <div class="alert alert-danger alert-dismissible">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                        <h5><i class="icon fas fa-exclamation-triangle"></i> Alert!</h5>
+                        <p>{{ session()->get('errors') }}</p>
                     </div>
                 @endif
-                <form action="" method="post">
+                <form action="{{ route('register.upload') }}" method="post">
                     @csrf
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control" required name="nama" id="nama" placeholder="Nama Lengkap">
+                        <select name="role_id" id="role_id" class="form-control" required>
+                            @foreach ($roles as $item)
+                                <option value="{{ $item->id }}">{{ $item->role }}</option>
+                            @endforeach
+                        </select>
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-user-tag"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" required name="name" id="name" placeholder="Full Name">
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-user"></span>
@@ -58,7 +68,7 @@
                         </div>
                     </div>
                     <div class="input-group mb-3">
-                        <input type="number" class="form-control" required name="no_hp" id="no_hp" placeholder="Nomor Handphone">
+                        <input type="number" class="form-control" required name="phone_number" id="phone_number" placeholder="Phone Number">
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-phone"></span>
@@ -66,7 +76,7 @@
                         </div>
                     </div>
                     <div class="input-group mb-3">
-                        <textarea type="text" class="form-control" required name="alamat" id="alamat" placeholder="Alamat"></textarea>
+                        <textarea type="text" class="form-control" required name="address" id="address" placeholder="Address"></textarea>
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-address-card"></span>

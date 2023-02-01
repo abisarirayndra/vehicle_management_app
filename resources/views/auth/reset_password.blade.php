@@ -32,16 +32,14 @@
     </div> -->
             <div class="card-body">
                 <p class="login-box-msg">Lupa Password</p>
-                @if ($errors->any())
-                    <div class="alert alert-danger">
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
+                @if (session()->has('errors'))
+                    <div class="alert alert-danger alert-dismissible">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                        <h5><i class="icon fas fa-exclamation-triangle"></i> Alert!</h5>
+                        <p>{{ session()->get('errors') }}</p>
                     </div>
                 @endif
-                <form action="" method="post">
+                <form action="{{ route('reset_password.upload') }}" method="post">
                     @csrf
                     <div class="input-group mb-3">
                         <input type="email" class="form-control" name="email" id="email" placeholder="Email">
@@ -52,7 +50,7 @@
                         </div>
                     </div>
                     <div class="input-group mb-3">
-                        <input type="password" class="form-control" name="password_baru" id="password_baru" placeholder="Password Baru">
+                        <input type="password" class="form-control" name="password" id="password" placeholder="Password Baru">
                         <div class="input-group-append">
                           <div class="input-group-text">
                             <span class="fas fa-lock"></span>
@@ -60,7 +58,7 @@
                         </div>
                       </div>
                       <div class="input-group mb-3">
-                        <input type="password" class="form-control" name="ulangi_password_baru" id="ulangi_password_baru" placeholder="Retype Password Baru">
+                        <input type="password" class="form-control" name="ulangi_password" id="ulangi_password" placeholder="Retype Password Baru">
                         <div class="input-group-append">
                           <div class="input-group-text">
                             <span class="fas fa-lock"></span>
@@ -71,7 +69,7 @@
                       <small id='message'></small>
                     <div class="row">
                         <div class="col-12">
-                            <button id="button" type="submit" class="btn btn-primary btn-block">Ubah</button>
+                            <button id="button" type="submit" class="btn btn-primary btn-block">Change Password</button>
                         </div>
                         <!-- /.col -->
                     </div>
