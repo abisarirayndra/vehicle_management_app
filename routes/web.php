@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\Admin\VehicleController as AdminVehicleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,6 +30,11 @@ Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::group(['prefix' => 'admin','middleware' => ['auth','admin-role']], function () {
     Route::get('dashboard', [AdminController::class, 'dashboard'])->name('admin.dasboard');
+    Route::get('vehicle', [AdminVehicleController::class, 'index'])->name('admin.vehicle');
+    Route::post('vehicle/create', [AdminVehicleController::class, 'create'])->name('admin.vehicle.create');
+    Route::post('vehicle/update', [AdminVehicleController::class, 'update'])->name('admin.vehicle.update');
+    Route::post('vehicle/delete', [AdminVehicleController::class, 'delete'])->name('admin.vehicle.delete');
+
 });
 
 Route::group(['prefix' => 'manager','middleware' => ['auth','manager-role']], function () {
