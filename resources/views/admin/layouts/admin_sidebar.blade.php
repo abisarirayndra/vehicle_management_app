@@ -55,7 +55,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="{{ route('admin.dasboard') }}" class="nav-link">
+            <a href="{{ route('admin.employee') }}" class="nav-link">
               <i class="nav-icon fas fa-users"></i>
               <p>
                 Employees

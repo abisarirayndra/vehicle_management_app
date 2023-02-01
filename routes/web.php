@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Admin\VehicleController as AdminVehicleController;
+use App\Http\Controllers\Admin\EmployeeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,7 +35,10 @@ Route::group(['prefix' => 'admin','middleware' => ['auth','admin-role']], functi
     Route::post('vehicle/create', [AdminVehicleController::class, 'create'])->name('admin.vehicle.create');
     Route::post('vehicle/update', [AdminVehicleController::class, 'update'])->name('admin.vehicle.update');
     Route::post('vehicle/delete', [AdminVehicleController::class, 'delete'])->name('admin.vehicle.delete');
-
+    Route::get('employee', [EmployeeController::class, 'index'])->name('admin.employee');
+    Route::post('employee/create', [EmployeeController::class, 'create'])->name('admin.employee.create');
+    Route::post('employee/update', [EmployeeController::class, 'update'])->name('admin.employee.update');
+    Route::post('employee/delete', [EmployeeController::class, 'delete'])->name('admin.employee.delete');
 });
 
 Route::group(['prefix' => 'manager','middleware' => ['auth','manager-role']], function () {
