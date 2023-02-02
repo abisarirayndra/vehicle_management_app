@@ -45,7 +45,7 @@
     - Open the VScode terminal
     - Run "composer install"
     - Run "php artisan key:generate"
-    - For check the project running well, open the postman then access "http://localhost/vehicle_management_app-main/public/" method Get will return the original page of Laravel
+    - For check the project running well, open the browser then access "http://localhost/vehicle_management_app-main/public/" method Get will return the original page of Laravel or type on terminal "php artisan serve" and open the browser with "localhost:8000"
     - Open phpmyadmin then create new database "data_vehicle_app"
     - Import with data_vehicle_app.sql
     - Open .env.example, edit configuration "DB_DATABASE = data_vehicle_app", "DB_USERNAME=[your phpmyadmin username]", "DB_PASSWORD=[your phpmyadmin password]"
