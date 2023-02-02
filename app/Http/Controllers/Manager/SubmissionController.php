@@ -14,22 +14,20 @@ class SubmissionController extends Controller
 {
     public function index(){
         $user = Auth::user()->name;
-        $submission = Submission::select('employees.employee_name','employees.position','vehicles.merk','vehicles.vehicle_number',
-                                           'submissions.status','submissions.date_allowed','submissions.id','submissions.employee_id','submissions.vehicle_id')
-                                    ->join('employees','employees.id','=','submissions.employee_id')
-                                    ->join('vehicles','vehicles.id','=','submissions.vehicle_id')
-                                    ->orderBy('id','desc')
-                                    ->where('submissions.status', 0)
-                                    ->orWhere('submissions.status', 1)
-                                    ->get();
+        $submission = SubmissionGranted::join('submissions','submissions.id','=','submission_granteds.submission_id')
+                                            ->join('employees','employees.id','=','submissions.employee_id')
+                                            ->join('vehicles','vehicles.id','=','submissions.vehicle_id')
+                                            ->select('employees.employee_name','employees.position','vehicles.merk','vehicles.vehicle_number',
+                                            'submission_granteds.status','submissions.id','submission_granteds.created_at')
+                                            ->orderBy('submission_granteds.id', 'desc')
+                                            ->where('submission_granteds.manager_id', Auth::user()->id)
+                                            ->where('submission_granteds.status', 0)
+                                            ->get();
+
         return view('manager.submission.index', compact('submission','user'));
     }
 
     public function action_submission(Request $request){
-        $already_action = SubmissionGranted::where('submission_id', $request->submission_id)->where('manager_id', Auth::user()->id)->first();
-        if($already_action){
-            return redirect()->back()->with('errors','Already make action to this submission!');
-        }
         SubmissionGranted::create([
             'submission_id' => $request->submission_id,
             'manager_id' => Auth::user()->id,
@@ -77,6 +75,7 @@ class SubmissionController extends Controller
                             ->select('employees.employee_name','employees.position','vehicles.merk','vehicles.vehicle_number',
                                     'submission_granteds.status','submissions.id')
                             ->where('manager_id', $me)
+                            ->orderBy('submission_granteds.id', 'desc')
                             ->where('submission_granteds.status', 1)
                             ->get();
 
@@ -92,6 +91,7 @@ class SubmissionController extends Controller
                             ->select('employees.employee_name','employees.position','vehicles.merk','vehicles.vehicle_number',
                                     'submission_granteds.status','submissions.id')
                             ->where('manager_id', $me)
+                            ->orderBy('submission_granteds.id', 'desc')
                             ->where('submission_granteds.status', 2)
                             ->get();
 

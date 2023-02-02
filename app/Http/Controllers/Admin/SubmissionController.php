@@ -9,6 +9,7 @@ use App\Models\Vehicle;
 use App\Models\Submission;
 use App\Models\SubmissionGranted;
 use Auth;
+use App\Models\User;
 
 class SubmissionController extends Controller
 {
@@ -32,9 +33,25 @@ class SubmissionController extends Controller
         if($check){
             return redirect()->back()->with('errors','Your Submission Already Exsist!');
         }
-        Submission::create([
+        $subs = Submission::create([
             'employee_id' => $request->employee_id,
             'vehicle_id' => $request->vehicle_id,
+            'status' => 0,
+        ]);
+
+        SubmissionGranted::create([
+            'submission_id' => $subs->id,
+            'manager_id' => $request->manager_1,
+            'status' => 0,
+        ]);
+        SubmissionGranted::create([
+            'submission_id' => $subs->id,
+            'manager_id' => $request->manager_2,
+            'status' => 0,
+        ]);
+        SubmissionGranted::create([
+            'submission_id' => $subs->id,
+            'manager_id' => $request->manager_3,
             'status' => 0,
         ]);
 
