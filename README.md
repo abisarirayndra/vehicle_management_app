@@ -7,58 +7,63 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
-## About Laravel
+# Requirement
+    - Laravel Version : 8.75
+    - PHP version : 7.3
+    - Bootstrap 4
+    - Database Version : 5.0.12
+    - If you want to see the code and download it : https://github.com/abisarirayndra/vehicle_management_app.git
+    - Programming Language - Framework : PHP - Laravel 8
+    - Composer : https://getcomposer.org/download/
+    - XAMPP : https://www.apachefriends.org/download.html
+    - Editor : https://code.visualstudio.com/download
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+# Username dan Password
+    - Database, PDM and Activity Diagram : https://drive.google.com/file/d/1j-SofKrOIl-ewJYGnsrLPImDJxpAyiC7/view?usp=share_link
+    - Username Database : root
+    - Password Database : (blank)
+    - List Email and Password
+        - admin@gmail.com (pass. 123)
+        - manager@gmail.com (pass. 123)
+        - manager2@gmail.com (pass. 123)
+        - manager3@gmail.com (pass. 123)
+        - manager4@gmail.com (pass. 123)
+        - manager5@gmail.com (pass. 123)
+        - manager6@gmail.com (pass. 123)
+        - manager7@gmail.com (pass. 123)
+        - manager8@gmail.com (pass. 123)
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## How Run The Project
+    - Install all the requirements
+    - Download the code from github
+    - Download database : https://drive.google.com/file/d/1j-SofKrOIl-ewJYGnsrLPImDJxpAyiC7/view?usp=share_link
+    - Place the project you've downloaded to C:\xampp\htdocs
+    - Extract it
+    - Open XAMPP (start APACHE and MySQL)
+    - Open VScode
+    - Open folder C:\xampp\htdocs on VScode
+    - Open the VScode terminal
+    - Run "composer install"
+    - Run "php artisan key:generate"
+    - For check the project running well, open the postman then access "http://localhost/vehicle_management_app-main/public/" method Get will return the original page of Laravel
+    - Open phpmyadmin then create new database "data_vehicle_app"
+    - Import with data_vehicle_app.sql
+    - Open .env.example, edit configuration "DB_DATABASE = data_vehicle_app", "DB_USERNAME=[your phpmyadmin username]", "DB_PASSWORD=[your phpmyadmin password]"
+    - Rename .env.example to .env
+    - Open VScode Terminal, run "php artisan migrate"
+    - Project ready to test
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
-
-## Learning Laravel
-
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
-
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
-
-## Laravel Sponsors
-
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
-
-### Premium Partners
-
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## How to Make Submission for Vehicle
+    - Admin 
+     - Admin login with registered account
+     - Input vehicles and employees
+     - Make submission to manager
+     
+    - Manager
+     - Login with registered account
+     - check the submission
+     - Grant or Deny submission
+     
+    - Admin
+     - Receiving information about granted or denied submission
+    
