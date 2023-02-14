@@ -39,22 +39,6 @@ class SubmissionController extends Controller
             'status' => 0,
         ]);
 
-        SubmissionGranted::create([
-            'submission_id' => $subs->id,
-            'manager_id' => $request->manager_1,
-            'status' => 0,
-        ]);
-        SubmissionGranted::create([
-            'submission_id' => $subs->id,
-            'manager_id' => $request->manager_2,
-            'status' => 0,
-        ]);
-        SubmissionGranted::create([
-            'submission_id' => $subs->id,
-            'manager_id' => $request->manager_3,
-            'status' => 0,
-        ]);
-
         $book = Vehicle::find($request->vehicle_id);
         $book->update([
             'status' => 1,
